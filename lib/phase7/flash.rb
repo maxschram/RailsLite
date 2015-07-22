@@ -5,11 +5,8 @@ module Phase7
   class Flash
     def initialize(req)
       cookie = req.cookies.find{ |c| c.name == "flash" } if req
-      if cookie
-        @store = JSON.parse(cookie.value)
-      else
-        @store = {}
-      end
+      now.store = JSON.parse(cookie.value) if cookie
+      @store = {}
     end
 
     def [](key)
@@ -28,15 +25,12 @@ module Phase7
       res.cookies << WEBrick::Cookie.new("flash", store.to_json)
     end
 
-    def clear_flash(res)
-
-    end
-
     private
-    attr_reader :store, :store_now
+    attr_reader :store
   end
 
   class FlashNow < Flash
+    attr_accessor :store
     def initialize
       super(nil)
     end
