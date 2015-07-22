@@ -11,7 +11,7 @@ class Route
   # checks if pattern matches path and method matches request method
   def matches?(req)
     pattern.match(req.path) &&
-      req.request_method.downcase.to_sym == http_method
+      method(req).downcase.to_sym == http_method
   end
 
   # use pattern to pull out route params (save for later?)
@@ -24,6 +24,21 @@ class Route
     end
     controller = controller_class.new(req, res, route_params)
     controller.invoke_action(action_name)
+  end
+
+  private
+
+  def method(req)
+    if hidden_method(req)
+      method = hidden_method(req).last
+    else
+      method = req.request_method
+    end
+  end
+
+  def hidden_method(req)
+    return nil unless req.body
+    URI.decode_www_form(req.body).find { |k_v_p| k_v_p.first == "_method" }
   end
 end
 

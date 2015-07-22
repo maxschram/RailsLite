@@ -5,4 +5,13 @@
 <%= @cat.human.fname %> <%= @cat.human.lname %>
 
 <br><br>
+<form action="/cats/<%= @cat.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token  %>">
+
+  <input type="submit" value="Delete this cat">
+</form>
+<br><br>
 <a href="/cats">Back to the Cats</a>
