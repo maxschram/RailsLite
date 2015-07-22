@@ -111,6 +111,10 @@ class SQLObject
     SQL
   end
 
+  def persisted?
+    !id.nil?
+  end
+
   def save
     id.nil? ? insert : update
   end

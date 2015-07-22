@@ -1,7 +1,7 @@
 Edit <%= @cat.name %>
-<br>
+<br><br>
 
- <%= flash[:errors].join("<br>").html_safe if flash[:errors] %>
+<%= flash[:errors].join("<br>").html_safe if flash[:errors] %>
 <form action="/cats/<%= @cat.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <input type="hidden"
@@ -11,7 +11,7 @@ Edit <%= @cat.name %>
   <label>Name
     <input type="text" name="cat[name]" value="<%= @cat.name %>">
   </label>
-
+  <br>
   <label for="owner">Owner</label>
   <select name="cat[owner_id]" id="owner">
     <% Human.all.each do |human| %>
@@ -21,10 +21,7 @@ Edit <%= @cat.name %>
       </option>
     <% end %>
   </select>
-
-  <input type="submit">
-  </form>
-
+  <br>
 
   <input type="submit" value="Update Cat">
 </form>

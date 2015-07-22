@@ -10,6 +10,7 @@
 
   <label for="owner">Owner</label>
   <select name="cat[owner_id]" id="owner">
+    <option></option>
     <% Human.all.each do |human| %>
       <option value="<%= human.id %>">
         <%= human.fname %> <%= human.lname %>

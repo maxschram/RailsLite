@@ -2,7 +2,9 @@
 <%= @cat.name %>
 
 <h2>Owner</h2>
-<%= @cat.human.fname %> <%= @cat.human.lname %>
+<% if @cat.human %>
+  <%= @cat.human.fname %> <%= @cat.human.lname %>
+<% end %>
 
 <br><br>
 <form action="/cats/<%= @cat.id %>" method="post">

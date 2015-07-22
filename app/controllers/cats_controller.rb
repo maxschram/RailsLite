@@ -29,7 +29,7 @@ class CatsController < ControllerBase
     @cat.owner_id = params["cat"]["owner_id"].to_i
 
     if @cat.update
-      redirect_to "/cats/#{cat.id}"
+      redirect_to "/cats/#{@cat.id}"
     else
       flash[:errors] = @cat.errors.full_messages
       render :edit
