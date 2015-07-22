@@ -1,0 +1,19 @@
+<a href="/">Harmless link</a>
+<br><br>
+
+<h2>This form has no authenticity token </h2>
+<form action="/" method="post">
+  <input type="submit" value="Dangerous Button!!!">
+</form>
+
+
+<h2>This form has an authenticity token</h2>
+<form action="/" method="post">
+  <label for="auth_token">Auth Token</label>
+  <input type="text"
+         id="auth_token"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+  <br>
+  <input type="submit" value="Dangerous Button!!!">
+</form>
