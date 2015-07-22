@@ -66,5 +66,6 @@ class Router
     else
       route.run(req, res)
     end
+    route
   end
 end

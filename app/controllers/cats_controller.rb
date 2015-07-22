@@ -11,6 +11,12 @@ class CatsController < ControllerBase
     render :new
   end
 
+  def destroy
+    @cat = Cat.find(params["id"].to_i)
+    @cat.destroy
+    redirect_to "/cats"
+  end
+
   def create
     cat = Cat.new(name: params["cat"]["name"],
                   owner_id: params["cat"]["owner_id"].to_i )
