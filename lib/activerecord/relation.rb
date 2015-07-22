@@ -1,6 +1,3 @@
-require_relative 'db_connection'
-require_relative '01_sql_object'
-
 module Searchable
   def where(params)
     Relation.new(self, params)
@@ -102,18 +99,4 @@ class Relation
 
   attr_reader :params, :class_of_relation, :cached_data, :included_assocs
   attr_accessor :items
-end
-
-class SQLObject
-  extend Searchable
-end
-
-class Cat < SQLObject
-  finalize!
-end
-
-class Human < SQLObject
-  self.table_name = 'humans'
-
-  finalize!
 end
