@@ -1,10 +1,15 @@
-<form action="/cats" method="POST">
+<%= flash[:errors].join("<br>").html_safe if flash[:errors] %>
+
+<form action="/cats" method="post">
+  <input type="text"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
   <label>Name
     <input type="text" name="cat[name]" value="<%= @cat.name %>">
   </label>
 
   <label>Owner
-    <input type="text" name="cat[owner]" value="<%= @cat.owner %>">
+    <input type="text" name="cat[owner_id]" value="<%= @cat.owner_id %>">
   </label>
 
   <input type="submit">

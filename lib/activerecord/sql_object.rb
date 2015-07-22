@@ -7,7 +7,7 @@ require 'active_support/inflector'
 
 class SQLObject
 
-  extend associatable,
+  extend Associatable, Searchable, Includeable
   def self.columns
     col_strings = DBConnection.execute2("SELECT * FROM #{table_name}").first
     col_strings.map(&:to_sym)

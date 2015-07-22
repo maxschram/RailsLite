@@ -52,7 +52,9 @@ class ControllerBase
 
   def form_authenticity_token
     token = generate_authenticity_token
-    res.cookies << WEBrick::Cookie.new("authenticity_token", token)
+    cookie = WEBrick::Cookie.new("authenticity_token", token)
+    cookie.path = "/"
+    res.cookies << cookie
     token
   end
 
