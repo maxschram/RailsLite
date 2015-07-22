@@ -53,18 +53,47 @@ class CatsController < ControllerBase
   end
 
   def show
-    p params
-    @cat = Cat.find(params["id"])
+    @cat = Cat.find(params["id"].to_i)
+    render :show
+  end
+end
+
+class HumansController
+  protect_from_forgery
+
+  def new
+    render :new
+  end
+
+  def create
+    human = Human.new(fname: params["human"]["fname"],
+                      lname: params["human"]["lname"])
+
+    if human.save
+      redirect_to "/human/#{human.id}"
+    else
+      flash[:errors] = human.errors.full_messages
+      render :new
+    end
+  end
+
+  def show
+    @human = Human.find(params["id"].to_i)
+    render :show
   end
 end
 
 router = Router.new
 router.draw do
   get Regexp.new("^/$"), CatsController, :index
-  get Regexp.new("^/cats/(?<id>\d+)$"), CatsController, :show
+  get Regexp.new("^/cats/(?<id>\\d+)"), CatsController, :show
   get Regexp.new("^/cats$"), CatsController, :index
   get Regexp.new("^/cats/new"), CatsController, :new
   post Regexp.new("^/cats$"), CatsController, :create
+
+  get Regexp.new("^/human/(?<id>\\d+)"), HumansController, :show
+  get Regexp.new("^/human/new"), HumansController, :new
+  post Regexp.new("^/human$"), HumansController, :create
 end
 
 server = WEBrick::HTTPServer.new(Port: 3000)

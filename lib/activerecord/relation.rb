@@ -34,6 +34,11 @@ class Relation
     self
   end
 
+  def first
+    load unless @items
+    @items.first
+  end
+
   def inspect
     @items || load
   end

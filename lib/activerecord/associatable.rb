@@ -85,7 +85,6 @@ module Associatable
         JOIN #{source_table} ON #{join_on_line}
         WHERE #{where_line}
       SQL
-
       source_options.model_class.parse_all(data).first
     end
   end

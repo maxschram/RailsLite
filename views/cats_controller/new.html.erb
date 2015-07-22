@@ -1,16 +1,21 @@
 <%= flash[:errors].join("<br>").html_safe if flash[:errors] %>
 
 <form action="/cats" method="post">
-  <input type="text"
+  <input type="hidden"
          name="authenticity_token"
          value="<%= form_authenticity_token %>">
   <label>Name
     <input type="text" name="cat[name]" value="<%= @cat.name %>">
   </label>
 
-  <label>Owner
-    <input type="text" name="cat[owner_id]" value="<%= @cat.owner_id %>">
-  </label>
+  <label for="owner">Owner</label>
+  <select name="cat[owner_id]" id="owner">
+    <% Human.all.each do |human| %>
+      <option value="<%= human.id %>">
+        <%= human.fname %> <%= human.lname %>
+      </option>
+    <% end %>
+    </select>
 
   <input type="submit">
 </form>
