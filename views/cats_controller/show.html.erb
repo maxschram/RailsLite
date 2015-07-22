@@ -12,6 +12,10 @@
          value="<%= form_authenticity_token  %>">
 
   <input type="submit" value="Delete this cat">
-</form>
+
+
+<br><br>
+<a href="/cats/<%= @cat.id %>/edit">Edit this cat</a>
+
 <br><br>
 <a href="/cats">Back to the Cats</a>

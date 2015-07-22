@@ -17,6 +17,25 @@ class CatsController < ControllerBase
     redirect_to "/cats"
   end
 
+  def edit
+    @cat = Cat.find(params["id"].to_i)
+    render :edit
+  end
+
+  def update
+    @cat = Cat.find(params["id"].to_i)
+
+    @cat.name = params["cat"]["name"]
+    @cat.owner_id = params["cat"]["owner_id"].to_i
+
+    if @cat.update
+      redirect_to "/cats/#{cat.id}"
+    else
+      flash[:errors] = @cat.errors.full_messages
+      render :edit
+    end
+  end
+
   def create
     cat = Cat.new(name: params["cat"]["name"],
                   owner_id: params["cat"]["owner_id"].to_i )

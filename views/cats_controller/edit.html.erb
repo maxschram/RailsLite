@@ -1,0 +1,30 @@
+Edit <%= @cat.name %>
+<br>
+
+ <%= flash[:errors].join("<br>").html_safe if flash[:errors] %>
+<form action="/cats/<%= @cat.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token  %>">
+
+  <label>Name
+    <input type="text" name="cat[name]" value="<%= @cat.name %>">
+  </label>
+
+  <label for="owner">Owner</label>
+  <select name="cat[owner_id]" id="owner">
+    <% Human.all.each do |human| %>
+      <option value="<%= human.id %>"
+              <%= "selected" if @cat.owner_id == human.id %>>
+        <%= human.fname %> <%= human.lname %>
+      </option>
+    <% end %>
+  </select>
+
+  <input type="submit">
+  </form>
+
+
+  <input type="submit" value="Update Cat">
+</form>
