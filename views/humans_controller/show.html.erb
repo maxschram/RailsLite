@@ -1,0 +1,11 @@
+<h2>Name</h2>
+<%= @human.fname %> <%= @human.lname %>
+
+
+<h2>Cats</h2>
+<% @human.cats.each do |cat| %>
+  <a href="cats/<%= cat.id %>"><%= cat.name %></a>
+<% end %>
+
+<br><br>
+<a href="/cats">Back to the Cats</a>

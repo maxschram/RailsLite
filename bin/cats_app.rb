@@ -58,10 +58,11 @@ class CatsController < ControllerBase
   end
 end
 
-class HumansController
+class HumansController < ControllerBase
   protect_from_forgery
 
   def new
+    @human = Human.new
     render :new
   end
 
@@ -70,7 +71,7 @@ class HumansController
                       lname: params["human"]["lname"])
 
     if human.save
-      redirect_to "/human/#{human.id}"
+      redirect_to "/humans/#{human.id}"
     else
       flash[:errors] = human.errors.full_messages
       render :new
@@ -91,9 +92,9 @@ router.draw do
   get Regexp.new("^/cats/new"), CatsController, :new
   post Regexp.new("^/cats$"), CatsController, :create
 
-  get Regexp.new("^/human/(?<id>\\d+)"), HumansController, :show
-  get Regexp.new("^/human/new"), HumansController, :new
-  post Regexp.new("^/human$"), HumansController, :create
+  get Regexp.new("^/humans/(?<id>\\d+)"), HumansController, :show
+  get Regexp.new("^/humans/new"), HumansController, :new
+  post Regexp.new("^/humans$"), HumansController, :create
 end
 
 server = WEBrick::HTTPServer.new(Port: 3000)

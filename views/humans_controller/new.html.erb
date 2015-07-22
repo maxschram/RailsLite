@@ -1,0 +1,18 @@
+<%= flash[:errors].join("<br>").html_safe if flash[:errors] %>
+
+<form action="/humans" method="post">
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+  <label>First Name
+    <input type="text" name="human[fname]" value="<%= @human.fname %>">
+  </label>
+  <br>
+
+  <label>Last Name
+    <input type="text" name="human[lname]" value="<%= @human.lname %>">
+  </label>
+  <br>
+
+  <input type="submit">
+</form>
