@@ -65,7 +65,17 @@ class Router
   [:get, :post, :put, :delete, :patch].each do |http_method|
     define_method(http_method) do |pattern, controller_class, action_name|
       add_route(pattern, http_method, controller_class, action_name)
+      add_url_helper(pattern)
     end
+  end
+
+  def add_url_helper(pattern)
+    names = pattern.source.scan(/\/(?<name>\w+)/).reverse
+    byebug
+    define_singleton_method("#{names.join("_")}_url") do |*args|
+      url = "/#{names.reverse.join("/")}/"
+    end
+
   end
 
   # should return the route that matches this request
