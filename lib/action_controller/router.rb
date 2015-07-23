@@ -75,8 +75,10 @@ class Router
     num_params = params_data.length
     ControllerBase.send(:define_method, "#{names.join("_")}_url") do |*args|
       url = ""
+      num_args = args.count
       names.reverse.each do |name|
-        url += "/#{name}#{"/*" if args.count > 0}"
+        url += "/#{name}#{"/*" if num_args > 0}"
+        num_args -= 1
       end
       args.each do |param|
         url.sub!(/\*/, param.to_s)
