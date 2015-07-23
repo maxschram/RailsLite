@@ -4,8 +4,8 @@
 
 <h2>Cats</h2>
 <% @human.cats.each do |cat| %>
-  <a href="cats/<%= cat.id %>"><%= cat.name %></a>
+  <a href="<%= cats_url(cat.id) %>"><%= cat.name %></a>
 <% end %>
 
 <br><br>
-<a href="/cats">Back to the Cats</a>
+<a href="<%= cats_url %>">Back to the Cats</a>

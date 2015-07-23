@@ -1,6 +1,6 @@
 <%= flash[:errors].join("<br>").html_safe if flash[:errors] %>
 
-<form action="/cats" method="post">
+<form action="<%= cats_url %>" method="post">
   <input type="hidden"
          name="authenticity_token"
          value="<%= form_authenticity_token %>">

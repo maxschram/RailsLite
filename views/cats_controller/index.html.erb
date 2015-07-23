@@ -1,7 +1,7 @@
 <h1>ALL THE CATS</h1>
 <% @cats.each do |cat| %>
-  <div><a href="cats/<%= cat.id %>"><%= cat.name  %></a></div>
+  <div><a href="<%= cats_url(cat.id) %>"><%= cat.name  %></a></div>
 <% end %>
 <br><br>
-<a href="/cats/new">New cat!</a>
-<a href="humans/new">New human!</a>
+<a href="<%= new_cats_url %>">New cat!</a>
+<a href="<%= new_humans_url %>">New human!</a>

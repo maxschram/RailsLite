@@ -2,7 +2,7 @@ Edit <%= @cat.name %>
 <br><br>
 
 <%= flash[:errors].join("<br>").html_safe if flash[:errors] %>
-<form action="/cats/<%= @cat.id %>" method="post">
+<form action="<%= cats_url(@cat.id) %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <input type="hidden"
          name="authenticity_token"

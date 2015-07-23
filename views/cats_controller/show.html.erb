@@ -3,11 +3,12 @@
 
 <h2>Owner</h2>
 <% if @cat.human %>
-  <%= @cat.human.fname %> <%= @cat.human.lname %>
+  <a href="<%= humans_url(@cat.human.id) %>">
+      <%= @cat.human.fname %> <%= @cat.human.lname %>
+  </a>
 <% end %>
 
 <br><br>
-<%= cats_url(@cat.id) %>
 <form action="<%= cats_url(@cat.id) %>" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="hidden"
