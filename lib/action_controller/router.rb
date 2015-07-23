@@ -70,12 +70,19 @@ class Router
   end
 
   def add_url_helper(pattern)
-    names = pattern.source.scan(/\/(?<name>\w+)/).reverse
-    byebug
-    define_singleton_method("#{names.join("_")}_url") do |*args|
-      url = "/#{names.reverse.join("/")}/"
+    names = pattern.source.scan(/\/(?<name>\w+)/).flatten.reverse
+    params_data = pattern.source.scan(/\?/)
+    num_params = params_data.length
+    ControllerBase.send(:define_method, "#{names.join("_")}_url") do |*args|
+      url = ""
+      names.reverse.each do |name|
+        url += "/#{name}#{"/*" if num_params > 0}"
+      end
+      args.each do |param|
+        url.sub!(/\*/, param.to_s)
+      end
+      url
     end
-
   end
 
   # should return the route that matches this request
