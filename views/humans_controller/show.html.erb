@@ -3,6 +3,8 @@
 
 
 <h2>Cats</h2>
+<a href="<%= cats_humans_url(@human.id) %>">All <%= @human.fname %>'s Cats</a>
+<br><br>
 <% @human.cats.each do |cat| %>
   <a href="<%= cats_url(cat.id) %>"><%= cat.name %></a>
 <% end %>

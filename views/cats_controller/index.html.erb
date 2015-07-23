@@ -1,4 +1,8 @@
-<h1>ALL THE CATS</h1>
+<% if @human %>
+  <h1><%= @human.fname %>'s Cats</h1>
+<% else %>
+  <h1>ALL THE CATS</h1>
+<% end %>
 <% @cats.each do |cat| %>
   <div><a href="<%= cats_url(cat.id) %>"><%= cat.name  %></a></div>
 <% end %>

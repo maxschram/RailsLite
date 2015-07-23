@@ -2,7 +2,12 @@ class CatsController < ControllerBase
   protect_from_forgery
 
   def index
-    @cats = Cat.all
+    if params["id"]
+      @human = Human.find(params["id"].to_i)
+      @cats = @human.cats
+    else
+      @cats = Cat.all
+    end
     render :index
   end
 
