@@ -8,3 +8,5 @@ A command for generating new apps is still in progress.
 To test out the framework clone the repo and run
 `ruby bin/cats_app.rb`
 Then navigate to localhost:3000
+
+All of the interesting framework stuff happens in the lib folder
