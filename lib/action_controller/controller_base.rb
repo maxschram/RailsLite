@@ -21,7 +21,7 @@ class ControllerBase
   end
 
   def render(template_name)
-    template_path = "views/#{controller_name}/#{template_name}.html.erb"
+    template_path = "app/views/#{controller_name}/#{template_name}.html.erb"
     template = ERB.new(File.read(template_path))
     content = template.result(binding)
     render_content(content, "text/html")
